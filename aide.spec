@@ -55,7 +55,7 @@ stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 %build
 rm -f missing po/Makefile*
 find . -name "*.c" -type f > po/POTFILES.in
-gettextize --copy --force
+%{__gettextize}
 aclocal
 %{__autoconf}
 %{__automake}
