@@ -23,9 +23,9 @@ Group(sv):	Till‰mpningar/System
 Group(uk):	“…ÀÃ¡ƒŒ¶ “œ«“¡Õ…/Û…”‘≈Õ¡
 Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
-Source3:	%{name}-check
-Source4:	%{name}.sysconfig
-Patch2:		%{name}-autoconf.patch
+Source2:	%{name}-check
+Source3:	%{name}.sysconfig
+Patch0:		%{name}-autoconf.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -36,6 +36,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glibc-static
 BuildRequires:	libgcrypt-static
 BuildRequires:	zlib-static
+BuildRequires:	kernel-headers
 Requires:	crondaemon
 Requires:	mailx
 Requires:	grep
@@ -62,7 +63,7 @@ stosunkowo ≥atwo. Zwyk≥e atrybuty plikÛw takøe mog± byÊ sprawdzane.
 
 %prep
 %setup -q -b 0
-%patch2 -p1
+%patch0 -p1
 
 %build
 rm -f missing
@@ -72,7 +73,6 @@ autoconf
 automake -a -c
 %configure \
 	--with-config-file=%{_sysconfdir}/aide.conf \
-	--with-locale
 %{__make}
 
 %install
@@ -83,8 +83,8 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir},/etc/cron.daily,/etc/sys
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
-install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/aide
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/cron.daily
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/aide
 
 gzip -9nf AUTHORS ChangeLog NEWS README doc/aide.conf
 
