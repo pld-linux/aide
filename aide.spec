@@ -1,22 +1,22 @@
 Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Name:		aide
-Version:	0.7
-Release:	7
+Version:	0.8
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
-Source2:	%{name}-%{version}-doc.tar.bz2
+Source2:	%{name}-0.7-doc.tar.bz2
 Source3:	%{name}-check
 Source4:	%{name}.sysconfig
-Patch0:		%{name}-cvs20010627.patch.gz
+Patch0:		%{name}-autoconf.patch
 Patch1:		%{name}-NLS.patch
-Patch2:		%{name}-autoconf.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
+BuildRequires:	findutils
 BuildRequires:	bison
 BuildRequires:	perl-modules
 BuildRequires:	gettext-devel
@@ -48,13 +48,13 @@ spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane
 stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 
 %prep
-%setup -q -b 0 -b 2
+%setup -q -b 0 -a 2
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
-rm -f missing
+rm -f missing po/Makefile*
+find . -name "*.c" -type f > po/POTFILES.in
 gettextize --copy --force
 aclocal
 autoconf
@@ -83,11 +83,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz doc/aide.conf.gz doc/manual.html doc/aide.html
+%doc *.gz doc/aide.conf.gz doc/manual.html aide-*/doc/aide.html
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/aide.conf
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/aide
 %attr(750,root,root) %dir %{_pkglibdir}
 %attr(755,root,root) %{_bindir}/aide
 %attr(700,root,root) %config(noreplace) /etc/cron.daily/aide-check
 %{_mandir}/man[15]/*
-%lang(ru) %{_mandir}/ru/man[15]/*
