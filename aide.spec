@@ -6,6 +6,7 @@ Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
+# Source0-md5:	877b1f515a9e25afda75e06805d687fb
 Source1:	%{name}.conf
 Source2:	%{name}-0.7-doc.tar.bz2
 Source3:	%{name}-check
