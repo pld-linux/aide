@@ -1,0 +1,149 @@
+--- ./configure.in.org	Mon Jul 22 10:46:22 2002
++++ ./configure.in	Mon Jul 22 12:35:12 2002
+@@ -193,9 +193,7 @@
+ 	,
+ 	AC_CHECK_FUNCS(mmap)
+ )
+-AC_CHECK_FUNC(vsnprintf,,
+-	echo "Must have a system that supports vsnprintf"
+-	exit 1)
++AC_CHECK_FUNC(vsnprintf,, AC_MSG_ERROR(Must have a system that supports vsnprintf))
+ 
+ AC_CHECK_HEADERS(syslog.h ustat.h)
+ 
+@@ -324,61 +322,49 @@
+ 
+ if test x$with_zlib = xyes; then
+   AC_CHECK_HEADERS(zlib.h,,
+- 	echo "You don't have zlib properly installed."
+-	echo "Install it or try --without-zlib."
+-	exit 1)
++	       AC_MSG_ERROR(You don't have zlib properly installed. Install it or try --without-zlib.))
+   save_LDFLAGS=$LDFLAGS
+   LDFLAGS="$LDFLAGS $LD_STATIC_FLAG"
+-  AC_CHECK_LIB(z,gzdopen,,
+- 	echo "You don't have zlib properly installed."
+-	echo "Install it or try --without-zlib."
+-	exit 1)
++  AC_CHECK_LIB(z,gzdopen,, 
++	       AC_MSG_ERROR(You don't have zlib properly installed. Install it or try --without-zlib.))
+   LDFLAGS=$save_LDFLAGS
+   AC_DEFINE(WITH_ZLIB,1)
+ fi
+ 
+ AC_ARG_WITH(gnu-regexp,
+-  "--with-gnu-regexp  use the bundled GNU regexp (use only if necessary)",
+-  [AC_DEFINE(REGEX, 1)],
+-  [AC_CHECK_FUNCS(regexec regcomp,,
+-	[AC_DEFINE(REGEX,1)]
+-  )]
++	    [--with-gnu-regexp  use the bundled GNU regexp (use only if necessary)],
++	    [AC_DEFINE(REGEX, 1)],
++	    [AC_CHECK_FUNCS(regexec regcomp, , [AC_DEFINE(REGEX,1)] )]
+ )
+ 
+-AC_ARG_WITH(gcrypt,
+-  [--with-gcrypt  use gcrypt library],
+-  AC_DEFINE(WITH_GCRYPT)
+-  AC_CHECK_HEADER(gcrypt.h,,
+-  	echo "You don't have libgcrypt properly installed."
+-  	echo "Install it if you need one."
+-  	exit 1)
+-  CRYPTLIB="-lgcrypt"
+-  compoptionstring="${compoptionstring}WITH_GCRYPT\\n"
+-  ,
+-  [with_gcrypt=no])
+-
+-AC_CHECK_LIB(mhash,mhash_get_block_size,
+-  CRYPTLIB="-lmhash"
+-  compoptionstring="${compoptionstring}WITH_MHASH\\n"
+-  AC_DEFINE(WITH_MHASH)
+-,
+-	echo "You must have libmhash properly installed."
+-	exit 1)
++AC_ARG_WITH(gcrypt,  [--with-gcrypt  use gcrypt library],
++	    [AC_DEFINE(WITH_GCRYPT)
++	    AC_CHECK_HEADER(gcrypt.h, [], 
++			    [AC_MSG_ERROR([You don't have libgcrypt properly installed. Install it if you need one.])])
++	    CRYPTLIB="-lgcrypt"
++	    compoptionstring="${compoptionstring}WITH_GCRYPT\\n" ],
++	    [with_gcrypt=no])
++
++#AC_CHECK_LIB(mhash,mhash_get_block_size,
++	     CRYPTLIB="-lmhash"
++	     compoptionstring="${compoptionstring}WITH_MHASH\\n"
++	     AC_DEFINE(WITH_MHASH)
++#	     ,
++#	     AC_MSG_ERROR(You must have libmhash properly installed.))
+ 
+ AC_SUBST(CRYPTLIB)
+ 
+ AC_ARG_WITH(confighmactype,
+   [--with-confighmactype=TYPE Hash type to use for checking config.
+ 			      Valid values are md5 and sha1.],
+-  if test "x$withval" = "xmd5" ;then
+-      AC_DEFINE(CONFIGHMACTYPE,MHASH_MD5)
++  if test "x$withval" = "xmd5" ; then
++	  AC_DEFINE(CONFIGHMACTYPE,MHASH_MD5)
+   else 
+-  if test "x$withval" = "xsha1" ;then
+-      AC_DEFINE(CONFIGHMACTYPE,MHASH_SHA1)
+-  else 
+-      echo "Valid parameters for --with-confighmactype are md5, sha1"
+-      exit 1
+-  fi
++	  if test "x$withval" = "xsha1" ;then
++		  AC_DEFINE(CONFIGHMACTYPE,MHASH_SHA1)
++	  else 
++		  AC_MSG_ERROR(Valid parameters for --with-confighmactype are md5, sha1)
++	fi
+   fi
+ ,
+ )
+@@ -418,14 +404,13 @@
+   [--with-dbhmactype=TYPE Hash type to use for checking db.
+ 			  Valid values are md5 and sha1.],
+   if test "x$withval" = "xmd5" ;then
+-      AC_DEFINE(DBHMACTYPE,MHASH_MD5)
++	  AC_DEFINE(DBHMACTYPE,MHASH_MD5)
+   else 
+-  if test "x$withval" = "xsha1" ;then
+-      AC_DEFINE(DBHMACTYPE,MHASH_SHA1)
+-  else 
+-      echo "Valid parameters for --with-dbhmactype are md5, sha1"
+-      exit 1
+-  fi
++	  if test "x$withval" = "xsha1" ;then
++		  AC_DEFINE(DBHMACTYPE,MHASH_SHA1)
++	  else 
++		  AC_MSG_ERROR(Valid parameters for --with-dbhmactype are md5, sha1)
++	  fi
+   fi
+ ,
+ )
+@@ -485,9 +470,7 @@
+ AC_ARG_WITH(psql,
+   [--with-psql   use postgres sql library for storing databases],
+   AC_DEFINE(WITH_PSQL)
+-  AC_CHECK_LIB(pq,PQclear,,
+-	echo "You must postgres sql library installed."
+-	exit 1)
++  AC_CHECK_LIB(pq,PQclear,, AC_MSG_ERROR(You must postgres sql library installed.))
+   PSQLLIB="-lpq"
+   compoptionstring="${compoptionstring}WITH_PSQL\\n"
+   AC_MSG_RESULT(yes)
+@@ -505,6 +488,12 @@
+ 
+ AC_DEFINE_UNQUOTED(AIDECOMPILEOPTIONS, "${compoptionstring}")
+ 
+-AC_OUTPUT(Makefile src/Makefile intl/Makefile po/Makefile.in doc/Makefile doc/aide.conf 
+-aide.spec)
++AC_OUTPUT([
++	   Makefile
++	   src/Makefile
++	   intl/Makefile
++	   po/Makefile.in
++	   doc/Makefile
++	   doc/aide.conf
++	   aide.spec])
+ 
