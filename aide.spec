@@ -58,7 +58,7 @@ find . -name "*.c" -type f > po/POTFILES.in
 gettextize --copy --force
 aclocal
 autoconf
-automake -a -c
+automake -a -c -f
 %configure \
 	--with-config-file=%{_sysconfdir}/aide.conf
 %{__make}
