@@ -1,8 +1,8 @@
 Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Name:		aide
-Version:	0.8
-Release:	3
+Version:	0.9
+Release:	0.1
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
@@ -12,20 +12,23 @@ Source3:	%{name}-check
 Source4:	%{name}.sysconfig
 Patch0:		%{name}-autoconf.patch
 Patch1:		%{name}-NLS.patch
+Patch2:		%{name}-ac_fix.patch
+Patch3:		%{name}-flex_fix.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	flex
-BuildRequires:	findutils
 BuildRequires:	bison
-BuildRequires:	perl-modules
+BuildRequires:	findutils
+BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glibc-static
-BuildRequires:	libgcrypt-static
+BuildRequires:	mhash-static
+BuildRequires:	perl-modules
+BuildRequires:	yacc
 BuildRequires:	zlib-static >= 1.1.4
 Requires:	crondaemon
-Requires:	mailx
 Requires:	grep
+Requires:	mailx
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir     /etc/%{name}
@@ -51,6 +54,8 @@ stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 %setup -q -b 0 -a 2
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
+%patch3 -p1
 
 %build
 rm -f missing po/Makefile*
@@ -60,8 +65,9 @@ aclocal
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-config-file=%{_sysconfdir}/aide.conf
-%{__make}
+	--with-config-file=%{_sysconfdir}/aide.conf \
+	--with-extra-includes=/usr/include/
+make
 
 %install
 rm -rf $RPM_BUILD_ROOT
