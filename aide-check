@@ -1,15 +1,18 @@
 #!/bin/sh
 
+# Get service config
+[ -f /etc/sysconfig/aide ] && . /etc/sysconfig/aide
+
 DATA=`date`
 SYSTEM=`hostname`
 SYSADMIN="root"
 
 if [ -f /var/lib/aide/aide.db ];
 then
- nice -20 /usr/bin/aide --check >/var/lib/aide/$$
- LIN=`grep -c . /var/lib/aide/$DATA2`
+ nice -20 /usr/bin/aide --$AIDE_WORK_MODE >/var/lib/aide/$$
+ LIN=`grep -c . /var/lib/aide/$$`
  if [ "$LIN" -gt "1" ]; then
-     mail -s "!!! $SYSTEM $DATA AIDE !!!" $SYSADMIN </var/lib/aide/$$
+     mail -s "AIDE $SYSTEM $DATA" $SYSADMIN </var/lib/aide/$$
  fi
  rm -f /var/lib/aide/$$
 else
