@@ -57,8 +57,8 @@ rm -f missing po/Makefile*
 find . -name "*.c" -type f > po/POTFILES.in
 gettextize --copy --force
 aclocal
-autoconf
-automake -a -c -f
+%{__autoconf}
+%{__automake}
 %configure \
 	--with-config-file=%{_sysconfdir}/aide.conf
 %{__make}
