@@ -34,7 +34,7 @@ Requires:	grep
 Requires:	mailx
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_sysconfdir     /etc/%{name}
+%define		_sysconfdir	/etc/%{name}
 %define		_pkglibdir	/var/lib/%{name}
 
 %description
