@@ -1,7 +1,7 @@
 Summary:	Advanced Intrusion Detection Environment
 Name:		aide
 Version:	0.7
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -19,6 +19,7 @@ BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glibc-static
 BuildRequires:	libgcrypt-static
+BuildRequires:	zlib-static
 Requires:	crond
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -46,8 +47,7 @@ aclocal
 autoconf
 automake -a -c
 %configure \
-	--with-config-file=%{_sysconfdir}/aide.conf \
-	--without-zlib
+	--with-config-file=%{_sysconfdir}/aide.conf
 %{__make}
 
 %install
