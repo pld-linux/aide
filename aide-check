@@ -10,7 +10,7 @@ if [ -f /var/lib/aide/aide.db ]; then
  umask 177
  TMPFILE="$( mktemp /tmp/aide-check-XXXXXX )"
  trap "rm -f $TMPFILE" 0
- nice -20 /usr/bin/aide --$AIDE_WORK_MODE > "$TMPFILE"
+ nice -n 20 /usr/bin/aide --$AIDE_WORK_MODE > "$TMPFILE"
  LIN="$( grep -c . "$TMPFILE" )"
  if [ "$LIN" -gt "1" ]; then
      cp -f "$TMPFILE" /var/log/aide.log && chmod 640 /var/log/aide.log
