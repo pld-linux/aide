@@ -11,6 +11,7 @@ Source1:	%{name}.conf
 Patch0:		%{name}-cvs20010627.patch.gz
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	libgcrypt-static
+BuildRequires:	gettext-devel
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir     /etc/%{name}
