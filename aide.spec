@@ -2,7 +2,7 @@ Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Name:		aide
 Version:	0.7
-Release:	6
+Release:	7
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
