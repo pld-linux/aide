@@ -1,0 +1,24 @@
+diff -Nur old/po/ru.po new/po/ru.po
+--- old/po/ru.po	2003-01-16 10:37:34.000000000 +0000
++++ new/po/ru.po	2003-12-15 02:49:10.000000000 +0000
+@@ -5,17 +5,16 @@
+ #: aide.c:321 aide.c:340 aide.c:361 commandconf.c:103 db.c:175 gen_list.c:404
+ #: gen_list.c:405 gen_list.c:406 gen_list.c:407 gen_list.c:409 gen_list.c:410
+ #: gen_list.c:411 gen_list.c:412 getopt.c:761 gnu_regex.c:586 gnu_regex.c:3595
+-#, fuzzy
+ msgid ""
+ msgstr ""
+-"Project-Id-Version: PACKAGE VERSION\n"
++"Project-Id-Version: ru\n"
+ "POT-Creation-Date: 2000-04-30 16:58+0400\n"
+ "PO-Revision-Date: 2000-04-30 16:59+0400\n"
+ "Last-Translator: Stanislav Ievelev <inger@linux.ru.net>\n"
+-"Language-Team: LANGUAGE <LL@li.org>\n"
++"Language-Team: russian\n"
+ "MIME-Version: 1.0\n"
+ "Content-Type: text/plain; charset=koi8-r\n"
+-"Content-Transfer-Encoding: ENCODING\n"
++"Content-Transfer-Encoding: 8bit\n"
+ 
+ #: aide.c:58
+ msgid ""
