@@ -1,11 +1,15 @@
 # Customized setings for aide
 
-# Define what aide should do `check` or `update`. 
-AIDE_WORK_MODE="check"
-
 # Define who should get mail with aide raport
 AIDE_MAILTO="root"
 
+# Define what aide should do `check` or `update`. 
+AIDE_WORK_MODE="check"
+
 # If you want to move new db created with `update`
 # to your old db then type `yes` here
+#
+# !!!WARNING!!!! This is REALLY not safe!!!!!!!!!!
+#
+# Think twice before setting it "yes"!
 AIDE_MOVEDB="no"
