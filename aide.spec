@@ -2,7 +2,7 @@ Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Name:		aide
 Version:	0.7
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
@@ -22,6 +22,7 @@ BuildRequires:	glibc-static
 BuildRequires:	libgcrypt-static
 BuildRequires:	zlib-static
 Requires:	crondaemon
+Requires:	mailx
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir     /etc/%{name}
@@ -49,11 +50,11 @@ spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane
 stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 
 %build
-rm -f missing
+%__rm -f missing
 gettextize --copy --force
-aclocal
-autoconf
-automake -a -c
+%__aclocal
+%{__autoconf}
+%{__automake} -a -c
 %configure \
 	--with-config-file=%{_sysconfdir}/aide.conf
 %{__make}
