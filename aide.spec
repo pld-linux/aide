@@ -14,6 +14,7 @@ Patch0:		%{name}-autoconf.patch
 Patch1:		%{name}-NLS.patch
 Patch2:		%{name}-ac_fix.patch
 Patch3:		%{name}-flex_fix.patch
+Patch4:		%{name}-no_md.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -56,6 +57,7 @@ stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 rm -f missing po/Makefile*
