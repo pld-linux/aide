@@ -30,3 +30,27 @@ diff -Naur aide-0.7/configure.in aide-0.7-p/configure.in
  )
  
  AC_CHECK_HEADER(gcrypt.h,,
+diff -Naur aide-0.9/Makefile.am aide-0.9-p/Makefile.am
+--- aide-0.9/Makefile.am	Tue Jun  4 10:29:57 2002
++++ aide-0.9-p/Makefile.am	Sat Nov 23 10:49:00 2002
+@@ -17,7 +17,7 @@
+ # Boston, MA 02111-1307, USA.
+ #
+ 
+-SUBDIRS = src doc po
++SUBDIRS = src doc po intl
+ 
+ CLEANFILES = *~
+ 
+diff -Naur aide-0.9/src/Makefile.am aide-0.9-/src/Makefile.am
+--- aide-0.9/src/Makefile.am	Wed Mar  6 14:12:12 2002
++++ aide-0.9-/src/Makefile.am	Sat Nov 23 10:55:14 2002
+@@ -46,7 +46,7 @@
+ 		util.c		\
+ 		aide.c
+ 
+-INCLUDES = -I$(prefix)/include -I$(top_srcdir)/include
++INCLUDES = -I$(top_srcdir)/include -I$(includedir)
+ 
+ LDADD = @CRYPTLIB@ @ACLLIB@
+ 
