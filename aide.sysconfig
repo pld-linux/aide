@@ -1,0 +1,5 @@
+# Customized setings for postfix
+
+# Define what aide should do `check` or `update`. 
+AIDE_WORK_MODE="check"
+
