@@ -2,12 +2,14 @@ Summary:	Advanced Intrusion Detection Environment
 Name:		aide
 Version:	20010624
 Release:	0.1
-URL:		http://www.cs.tut.fi/~rammer/aide.html
-Source0:	%{name}-%{version}.tar.gz
-#Source1:	%{name}.conf
 License:	GPL
-Group:		Console/Security
-Provides:	aide
+Group:		Applications/System
+Group(de):	Applikationen/System
+Group(pl):	Aplikacje/System
+#Source0:	ftp://ftp.linux.hr/pub/aide/%{name}-%{version}.tar.gz
+Source0:	%{name}-%{version}.tar.gz
+URL:		http://www.cs.tut.fi/~rammer/aide.html
+#Source1:	%{name}.conf
 BuildRequires:	libgcrypt-static
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,12 +39,16 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%files
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/aide
-%{_mandir}/man[15]/*
-#%config(noreplace) %{_sysconfdir}/aide.conf
-#%doc
+gzip -9nf AUTHORS ChangeLog NEWS README
+
+%find_lang %{name}
 
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
+
+%files -f %{name}.lang
+%defattr(644,root,root,755)
+%doc *.gz
+#%config(noreplace) %{_sysconfdir}/aide.conf
+%attr(755,root,root) %{_bindir}/aide
+%{_mandir}/man[15]/*
