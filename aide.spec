@@ -9,6 +9,7 @@ Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
 # Source0-md5:	877b1f515a9e25afda75e06805d687fb
 Source1:	%{name}.conf
 Source2:	%{name}-0.7-doc.tar.bz2
+# Source2-md5:	f8d01112f839957b3061bb6b5f262174
 Source3:	%{name}-check
 Source4:	%{name}.sysconfig
 Patch0:		%{name}-autoconf.patch
