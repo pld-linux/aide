@@ -1,38 +1,6 @@
-diff -Naur aide-0.7/configure.in aide-0.7-p/configure.in
---- aide-0.7/configure.in	Fri Nov 23 16:38:09 2001
-+++ aide-0.7-p/configure.in	Fri Nov 23 16:38:30 2001
-@@ -289,7 +289,7 @@
- fi
- 
- AC_ARG_WITH(gnu-regexp,
--  [--with-gnu-regexp  use the bundled GNU regexp(use only if necessary)],
-+  [--with-gnu-regexp  use the bundled GNU regexp (use only if necessary)],
-   AC_DEFINE(REGEX, 1)
- ,
-   AC_CHECK_FUNCS(regexec regcomp,,
-diff -Naur aide-0.7/configure.in aide-0.7-p/configure.in
---- aide-0.7/configure.in	Fri Nov 23 16:46:36 2001
-+++ aide-0.7-p/configure.in	Fri Nov 23 16:46:27 2001
-@@ -289,11 +289,11 @@
- fi
- 
- AC_ARG_WITH(gnu-regexp,
--  [--with-gnu-regexp  use the bundled GNU regexp (use only if necessary)],
--  AC_DEFINE(REGEX, 1)
--,
--  AC_CHECK_FUNCS(regexec regcomp,,
--	AC_DEFINE(REGEX,1))
-+  "--with-gnu-regexp  use the bundled GNU regexp (use only if necessary)",
-+  [AC_DEFINE(REGEX, 1)],
-+  [AC_CHECK_FUNCS(regexec regcomp,,
-+	[AC_DEFINE(REGEX,1)]
-+  )]
- )
- 
- AC_CHECK_HEADER(gcrypt.h,,
-diff -Naur aide-0.9/Makefile.am aide-0.9-p/Makefile.am
---- aide-0.9/Makefile.am	Tue Jun  4 10:29:57 2002
-+++ aide-0.9-p/Makefile.am	Sat Nov 23 10:49:00 2002
+diff -Nur old/Makefile.am new/Makefile.am
+--- old/Makefile.am	2003-01-16 10:37:34.000000000 +0000
++++ new/Makefile.am	2003-12-13 19:21:12.000000000 +0000
 @@ -17,7 +17,7 @@
  # Boston, MA 02111-1307, USA.
  #
@@ -42,9 +10,9 @@ diff -Naur aide-0.9/Makefile.am aide-0.9-p/Makefile.am
  
  CLEANFILES = *~
  
-diff -Naur aide-0.9/src/Makefile.am aide-0.9-/src/Makefile.am
---- aide-0.9/src/Makefile.am	Wed Mar  6 14:12:12 2002
-+++ aide-0.9-/src/Makefile.am	Sat Nov 23 10:55:14 2002
+diff -Nur old/src/Makefile.am new/src/Makefile.am
+--- old/src/Makefile.am	2003-10-29 10:10:57.000000000 +0000
++++ new/src/Makefile.am	2003-12-13 19:22:44.000000000 +0000
 @@ -46,7 +46,7 @@
  		util.c		\
  		aide.c

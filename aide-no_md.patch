@@ -1,15 +1,7 @@
-diff -Naur aide-0.9/src/conf_yacc.y aide-0.9-p/src/conf_yacc.y
---- aide-0.9/src/conf_yacc.y	Sat Nov 23 12:05:41 2002
-+++ aide-0.9-p/src/conf_yacc.y	Sat Nov 23 12:05:55 2002
-@@ -62,6 +62,7 @@
- %token TEND_CONFIG
- %token TBEGIN_DB
- %token TEND_DB
-+%token TEND_DBNOMD
- %token TID
- %token <s> TSTRING
- %token '='
-@@ -151,6 +152,9 @@
+diff -Nur old/src/conf_yacc.y new/src/conf_yacc.y
+--- old/src/conf_yacc.y	2003-08-18 13:03:22.000000000 +0000
++++ new/src/conf_yacc.y	2003-12-13 19:31:05.000000000 +0000
+@@ -156,6 +156,9 @@
         | TEND_DB {
  	  conferror("Error while reading configuration");
            }
@@ -19,42 +11,3 @@ diff -Naur aide-0.9/src/conf_yacc.y aide-0.9-p/src/conf_yacc.y
         | error {
  	  conferror("Error while reading configuration");
  	  YYABORT;
-diff -Naur aide-0.9/src/db_file.c aide-0.9-p/src/db_file.c
---- aide-0.9/src/db_file.c	Thu May 30 11:42:46 2002
-+++ aide-0.9-p/src/db_file.c	Sat Nov 23 12:08:06 2002
-@@ -462,6 +462,9 @@
-       }
-       
-       /*  */
-+      if(gotend_db){
-+	return NULL;
-+      }
- 
-       error(0,"Not enough parameters in db:%i. Trying to continue.\n",
- 	    *db_lineno);
-@@ -515,6 +518,11 @@
-       break;
-     }
- 
-+    case TEND_DBNOMD : {
-+      gotend_db=1;
-+      break;
-+    }
-+
-     case TEOF : {
-       if(gotend_db){
- 	return NULL;
-diff -Naur aide-0.9/src/db_lex.l aide-0.9-p/src/db_lex.l
---- aide-0.9/src/db_lex.l	Wed May 29 10:04:27 2002
-+++ aide-0.9-p/src/db_lex.l	Sat Nov 23 12:05:55 2002
-@@ -104,6 +104,10 @@
-   return (TSTRING);
- }
- 
-+^"@@end_db" {
-+  return (TEND_DBNOMD);
-+}
-+
- "@@"({L}+) {
-   return (TUNKNOWN);
- }
