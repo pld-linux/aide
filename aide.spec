@@ -1,21 +1,30 @@
 Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W≥amaÒ (AIDE)
 Name:		aide
-Version:	0.7
-Release:	7
+Version:	0.8
+Release:	0.1
 License:	GPL
 Group:		Applications/System
+Group(cs):	Aplikace/SystÈm
+Group(da):	Programmer/System
 Group(de):	Applikationen/System
 Group(es):	Aplicaciones/Sistema
+Group(fr):	Applications/SystËme
+Group(is):	Forrit/Kerfisforrit
+Group(it):	Applicazioni/Sistema
+Group(ja):	•¢•◊•Í•±°º•∑•Á•Û/•∑•π•∆•‡
+Group(no):	Applikasjoner/System
 Group(pl):	Aplikacje/System
+Group(pt):	AplicaÁıes/Sistema
 Group(pt_BR):	AplicaÁıes/Sistema
+Group(ru):	“…Ãœ÷≈Œ…—/Û…”‘≈Õ¡
+Group(sl):	Programi/Sistem
+Group(sv):	Till‰mpningar/System
+Group(uk):	“…ÀÃ¡ƒŒ¶ “œ«“¡Õ…/Û…”‘≈Õ¡
 Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
-Source2:	%{name}-%{version}-doc.tar.bz2
 Source3:	%{name}-check
 Source4:	%{name}.sysconfig
-Patch0:		%{name}-cvs20010627.patch.gz
-Patch1:		%{name}-NLS.patch
 Patch2:		%{name}-autoconf.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
@@ -52,9 +61,7 @@ spÛjno∂ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byÊ dodane
 stosunkowo ≥atwo. Zwyk≥e atrybuty plikÛw takøe mog± byÊ sprawdzane.
 
 %prep
-%setup -q -b 0 -b 2
-%patch0 -p1
-%patch1 -p1
+%setup -q -b 0
 %patch2 -p1
 
 %build
@@ -64,7 +71,8 @@ aclocal
 autoconf
 automake -a -c
 %configure \
-	--with-config-file=%{_sysconfdir}/aide.conf
+	--with-config-file=%{_sysconfdir}/aide.conf \
+	--with-locale
 %{__make}
 
 %install
@@ -80,18 +88,19 @@ install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/aide
 
 gzip -9nf AUTHORS ChangeLog NEWS README doc/aide.conf
 
-%find_lang %{name}
+#%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+#%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
-%doc *.gz doc/aide.conf.gz doc/manual.html doc/aide.html
+%doc *.gz doc/aide.conf.gz doc/manual.html
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/aide.conf
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/aide
 %attr(750,root,root) %dir %{_pkglibdir}
 %attr(755,root,root) %{_bindir}/aide
 %attr(700,root,root) %config(noreplace) /etc/cron.daily/aide-check
 %{_mandir}/man[15]/*
-%lang(ru) %{_mandir}/ru/man[15]/*
+#%lang(ru) %{_mandir}/ru/man[15]/*
