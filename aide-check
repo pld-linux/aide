@@ -22,6 +22,6 @@ if [ -f /var/lib/aide/aide.db ]; then
      mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
  fi
 else
- nice -20 /usr/bin/aide --init
+ nice -n -20 /usr/bin/aide --init
  mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
 fi
