@@ -16,8 +16,8 @@ Source4:	%{name}.sysconfig
 Patch0:		%{name}-autoconf.patch
 Patch1:		%{name}-NLS.patch
 Patch2:		%{name}-ac_fix.patch
-Patch3:		%{name}-flex_fix.patch
-Patch4:		%{name}-no_md.patch
+Patch3:		%{name}-no_md.patch
+Patch4:		%{name}-language-ru.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -59,11 +59,11 @@ a detectar violações de integridade pelo uso de hashes como MD5.
 
 %prep
 %setup -q -b 0 -a 2
-#%patch0 -p1
+%patch0 -p1
 %patch1 -p1
-#%patch2 -p1
-#%patch3 -p1
-##%patch4 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
 
 %build
 rm -f missing po/Makefile*
@@ -74,8 +74,8 @@ find . -name "*.c" -type f > po/POTFILES.in
 %{__autoconf}
 %{__automake}
 %configure \
-	--with-config-file=%{_sysconfdir}/aide.conf \
-	--with-extra-includes=/usr/include/
+	--with-config-file=%{_sysconfdir}/aide.conf
+#	--with-extra-includes=/usr/include/
 make
 
 %install
