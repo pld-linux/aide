@@ -32,6 +32,7 @@ for inconsistencies.
 %build
 %configure \
 	--with-config-file=%{_sysconfdir}/aide.conf \
+	--with-locale \
 	--without-zlib
 %{__make}
 
@@ -44,13 +45,12 @@ rm -rf $RPM_BUILD_ROOT
 
 gzip -9nf AUTHORS ChangeLog NEWS README doc/aide.conf
 
-#%find_lang %{name}
+%find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-#%files -f %{name}.lang
-%files
+%files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc *.gz doc/aide.conf.gz
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/aide.conf
