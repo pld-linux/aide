@@ -50,24 +50,24 @@ spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane
 stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 
 %build
-%__rm -f missing
+rm -f missing
 gettextize --copy --force
-%__aclocal
-%{__autoconf}
-%{__automake} -a -c
+aclocal
+autoconf
+automake -a -c
 %configure \
 	--with-config-file=%{_sysconfdir}/aide.conf
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
-%{__install} -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir},/etc/cron.daily}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir},/etc/cron.daily}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
-%{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
-%{__install} %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
+install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
 
 gzip -9nf AUTHORS ChangeLog NEWS README doc/aide.conf
 
