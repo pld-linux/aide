@@ -2,12 +2,12 @@ Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Summary(pt_BR):	AIDE - ferramenta de verificação de integridade do sistema
 Name:		aide
-Version:	0.9
-Release:	1
+Version:	0.10
+Release:	0.1
 License:	GPL
 Group:		Applications/System
-Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
-# Source0-md5:	877b1f515a9e25afda75e06805d687fb
+Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+# Source0-md5:	39eb7d21064cac7b409c45d038b86cd8
 Source1:	%{name}.conf
 Source2:	%{name}-0.7-doc.tar.bz2
 # Source2-md5:	f8d01112f839957b3061bb6b5f262174
@@ -59,15 +59,16 @@ a detectar violações de integridade pelo uso de hashes como MD5.
 
 %prep
 %setup -q -b 0 -a 2
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+#%patch2 -p1
+#%patch3 -p1
+##%patch4 -p1
 
 %build
 rm -f missing po/Makefile*
 find . -name "*.c" -type f > po/POTFILES.in
+
 %{__gettextize}
 %{__aclocal}
 %{__autoconf}
