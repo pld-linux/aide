@@ -7,16 +7,19 @@ DATA=`date`
 SYSTEM=`hostname`
 
 if [ -f /var/lib/aide/aide.db ]; then
- nice -20 /usr/bin/aide --$AIDE_WORK_MODE >/var/lib/aide/$$
- LIN=`grep -c . /var/lib/aide/$$`
+ umask 177
+ TMPFILE="$( mktemp /tmp/aide-check-XXXXXX )"
+ trap "rm -f $TMPFILE" 0
+ nice -20 /usr/bin/aide --$AIDE_WORK_MODE > "$TMPFILE"
+ LIN="$( grep -c . "$TMPFILE" )"
  if [ "$LIN" -gt "1" ]; then
-     mail -s "AIDE $SYSTEM $DATA" $AIDE_MAILTO </var/lib/aide/$$
+     mail -s "AIDE $SYSTEM $DATA" $AIDE_MAILTO < "$TMPFILE"
  fi
- rm -f /var/lib/aide/$$
- if [ $AIDE_WORK_MODE = "update" ] && [ $AIDE_MOVEDB = "yes" ]; then
-     mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
- fi
+ rm -f "$TMPFILE"
+ trap - 0
 else
  nice -20 /usr/bin/aide --init
- mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+fi
+if [ $AIDE_WORK_MODE = "update" ] && [ $AIDE_MOVEDB = "yes" ]; then
+     mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
 fi
