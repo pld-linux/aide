@@ -3,7 +3,7 @@
 # Define who should get mail with aide raport
 AIDE_MAILTO="root"
 
-# Define what aide should do `check` or `update`. 
+# Define what aide should do `check` or `update`.
 AIDE_WORK_MODE="check"
 
 # If you want to move new db created with `update`
