@@ -97,6 +97,7 @@ rm -rf $RPM_BUILD_ROOT
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README doc/aide.conf doc/manual.html aide-*/doc/aide.html
+%attr(750,root,root) %dir %{_sysconfdir}
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/aide.conf
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/aide
 %attr(750,root,root) %dir %{_pkglibdir}
