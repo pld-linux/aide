@@ -31,12 +31,6 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_sysconfdir     /etc/%{name}
 %define		_pkglibdir	/var/lib/%{name}
 
-%prep
-%setup -q -b 0 -b 2
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-
 %description
 AIDE creates a database from the regular expression rules that it
 finds from the config file. Once this database is initialized it can
@@ -52,6 +46,12 @@ pliku konfiguracyjnym. Gdy baza zostanie zainicjowana mo¿na sprawdzaæ
 integralno¶æ plików. U¿ywanych jest kilka algorytmów sprawdzania
 spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane
 stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
+
+%prep
+%setup -q -b 0 -b 2
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
 
 %build
 rm -f missing
