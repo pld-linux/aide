@@ -13,6 +13,7 @@ if [ -f /var/lib/aide/aide.db ]; then
  nice -20 /usr/bin/aide --$AIDE_WORK_MODE > "$TMPFILE"
  LIN="$( grep -c . "$TMPFILE" )"
  if [ "$LIN" -gt "1" ]; then
+     cp -f "$TMPFILE" /var/log/aide.log && chmod 640 /var/log/aide.log
      mail -s "AIDE $SYSTEM $DATA" $AIDE_MAILTO < "$TMPFILE"
  fi
  rm -f "$TMPFILE"
