@@ -9,8 +9,8 @@ Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.linux.hr/pub/aide/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
-Source2:        %{name}-%{version}-doc.tar.bz2
-Source3:        %{name}-check
+Source2:	%{name}-%{version}-doc.tar.bz2
+Source3:	%{name}-check
 Patch0:		%{name}-cvs20010627.patch.gz
 Patch1:		%{name}-NLS.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
@@ -46,7 +46,7 @@ for inconsistencies.
 AIDE tworzy bazê danych z wyra¿eñ regularnych, które znajduj± siê w
 pliku konfiguracyjnym. Gdy baza zostanie zainicjowana mo¿na sprawdzaæ
 integralno¶æ plików. U¿ywanych jest kilka algorytmów sprawdzania
-spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane 
+spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane
 stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 
 %build
