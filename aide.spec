@@ -8,6 +8,7 @@ Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.linux.hr/pub/aide/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
+Source2:	%{name}-extra-%{version}.tar.bz2
 Patch0:		%{name}-cvs20010627.patch.gz
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	libgcrypt-static
@@ -18,7 +19,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_pkglibdir	/var/lib/%{name}
 
 %prep
-%setup -q -n %{name}-%{version}
+%setup -q -b 0 -b 2
 %patch0 -p1
 
 %description
@@ -41,8 +42,9 @@ for inconsistencies.
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
-%{__install} -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir}}
+%{__install} -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir},/etc/cron.daily}
 %{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
+%{__install} -m 700 extra/aide.check $RPM_BUILD_ROOT/etc/cron.daily
 
 gzip -9nf AUTHORS ChangeLog NEWS README doc/aide.conf
 
@@ -53,8 +55,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz doc/aide.conf.gz
+%doc *.gz doc/aide.conf.gz doc/manual.html extra/aide.html
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/aide.conf
 %attr(750,root,root) %ghost %{_pkglibdir}
 %attr(755,root,root) %{_bindir}/aide
+%attr(700,root,root) %config(noreplace) /etc/cron.daily/aide.check
 %{_mandir}/man[15]/*
