@@ -2,7 +2,7 @@ Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Name:		aide
 Version:	0.8
-Release:	1
+Release:	2
 License:	GPL
 Group:		Applications/System
 Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
@@ -22,7 +22,7 @@ BuildRequires:	perl-modules
 BuildRequires:	gettext-devel
 BuildRequires:	glibc-static
 BuildRequires:	libgcrypt-static
-BuildRequires:	zlib-static
+BuildRequires:	zlib-static >= 1.1.4
 Requires:	crondaemon
 Requires:	mailx
 Requires:	grep
