@@ -5,16 +5,22 @@
 
 DATA=`date`
 SYSTEM=`hostname`
-SYSADMIN="root"
 
-if [ -f /var/lib/aide/aide.db ];
-then
+if [ -f /var/lib/aide/aide.db ]; then
  nice -20 /usr/bin/aide --$AIDE_WORK_MODE >/var/lib/aide/$$
  LIN=`grep -c . /var/lib/aide/$$`
  if [ "$LIN" -gt "1" ]; then
-     mail -s "AIDE $SYSTEM $DATA" $SYSADMIN </var/lib/aide/$$
+     mail -s "AIDE $SYSTEM $DATA" $AIDE_MAILTO </var/lib/aide/$$
  fi
  rm -f /var/lib/aide/$$
+ if [ $AIDE_WORK_MODE = "update" ] && [ $AIDE_MOVEDB = "yes" ]; then
+     mv -f /var/lib/aide.db.new /var/lib/aide.db
+ fi
 else
- mail -s "AIDE" $SYSADMIN "You don't have got /var/lib/aide/aide.db, do 'aide --init'"
+ nice -20 /usr/bin/aide --init >/var/lib/aide/$$
+ LIN=`grep -c . /var/lib/aide/$$`
+ if [ "$LIN" -gt "1" ]; then
+     mail -s "AIDE $SYSTEM $DATA" $AIDE_MAILTO </var/lib/aide/$$
+ fi
+ rm -f /var/lib/aide/$$
 fi
