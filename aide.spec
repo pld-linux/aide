@@ -70,7 +70,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz doc/aide.conf.gz doc/manual.html extra/aide.html
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/aide.conf
-%attr(750,root,root) %ghost %{_pkglibdir}
+%attr(750,root,root) %dir %{_pkglibdir}
 %attr(755,root,root) %{_bindir}/aide
 %attr(700,root,root) %config(noreplace) /etc/cron.daily/aide.check
 %{_mandir}/man[15]/*
