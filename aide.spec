@@ -61,7 +61,7 @@ stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 rm -f missing po/Makefile*
 find . -name "*.c" -type f > po/POTFILES.in
 %{__gettextize}
-aclocal
+%{__aclocal}
 %{__autoconf}
 %{__automake}
 %configure \
