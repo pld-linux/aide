@@ -2,15 +2,18 @@ Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Name:		aide
 Version:	0.7
-Release:	5
+Release:	6
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
+Group(es):	Aplicaciones/Sistema
 Group(pl):	Aplikacje/System
+Group(pt_BR):	Aplicações/Sistema
 Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
 Source2:	%{name}-%{version}-doc.tar.bz2
 Source3:	%{name}-check
+Source4:	%{name}.sysconfig
 Patch0:		%{name}-cvs20010627.patch.gz
 Patch1:		%{name}-NLS.patch
 Patch2:		%{name}-autoconf.patch
@@ -66,13 +69,14 @@ automake -a -c
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir},/etc/cron.daily}
+install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir},/etc/cron.daily,/etc/sysconfig}
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
+install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/aide
 
 gzip -9nf AUTHORS ChangeLog NEWS README doc/aide.conf
 
@@ -85,6 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc *.gz doc/aide.conf.gz doc/manual.html doc/aide.html
 %attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/aide.conf
+%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/aide
 %attr(750,root,root) %dir %{_pkglibdir}
 %attr(755,root,root) %{_bindir}/aide
 %attr(700,root,root) %config(noreplace) /etc/cron.daily/aide-check
