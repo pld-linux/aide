@@ -1,5 +1,6 @@
 Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
+Summary(pt_BR):	AIDE - ferramenta de verificação de integridade do sistema
 Name:		aide
 Version:	0.9
 Release:	1
@@ -52,6 +53,10 @@ pliku konfiguracyjnym. Gdy baza zostanie zainicjowana mo¿na sprawdzaæ
 integralno¶æ plików. U¿ywanych jest kilka algorytmów sprawdzania
 spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane
 stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
+
+%description -l pt_BR
+O AIDE tem por objetivo ser a versão gratuita do Tripwire, e ajuda
+a detectar violações de integridade pelo uso de hashes como MD5.
 
 %prep
 %setup -q -b 0 -a 2
