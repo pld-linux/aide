@@ -8,7 +8,8 @@ Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
 Source0:	ftp://ftp.linux.hr/pub/aide/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
-Source2:	%{name}-extra-%{version}.tar.bz2
+Source2:        %{name}-%{version}-doc.tar.bz2
+Source3:        %{name}-check
 Patch0:		%{name}-cvs20010627.patch.gz
 Patch1:		%{name}-NLS.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
@@ -57,7 +58,7 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT
 
 %{__install} %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
-%{__install} extra/aide.check $RPM_BUILD_ROOT/etc/cron.daily
+%{__install} %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
 
 gzip -9nf AUTHORS ChangeLog NEWS README doc/aide.conf
 
@@ -68,10 +69,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
-%doc *.gz doc/aide.conf.gz doc/manual.html extra/aide.html
+%doc *.gz doc/aide.conf.gz doc/manual.html doc/aide.html
 %attr(640,root,root) %config(noreplace) %{_sysconfdir}/aide.conf
 %attr(750,root,root) %dir %{_pkglibdir}
 %attr(755,root,root) %{_bindir}/aide
-%attr(700,root,root) %config(noreplace) /etc/cron.daily/aide.check
+%attr(700,root,root) %config(noreplace) /etc/cron.daily/aide-check
 %{_mandir}/man[15]/*
 %lang(ru) %{_mandir}/ru/man[15]/*
