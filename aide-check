@@ -1,0 +1,13 @@
+#!/bin/sh
+
+DATA=`date`
+DATA2=`date +%m%d%s`
+SYSTEM=`hostname`
+SYSADMIN="root"
+
+nice -20 /usr/bin/aide -u >/var/lib/aide/$DATA2
+LIN=`grep -c . /var/lib/aide/$DATA2`
+if [ "$LIN" -gt "1" ]; then
+    mail -s "!!! $SYSTEM $DATA aide !!!" $SYSADMIN </var/lib/aide/$DATA2
+fi
+rm -f /var/lib/aide/$DATA2
