@@ -1,13 +1,17 @@
 #!/bin/sh
 
 DATA=`date`
-DATA2=`date +%m%d%s`
 SYSTEM=`hostname`
 SYSADMIN="root"
 
-nice -20 /usr/bin/aide -u >/var/lib/aide/$DATA2
-LIN=`grep -c . /var/lib/aide/$DATA2`
-if [ "$LIN" -gt "1" ]; then
-    mail -s "!!! $SYSTEM $DATA aide !!!" $SYSADMIN </var/lib/aide/$DATA2
+if [ -f /var/lib/aide/aide.db ];
+then
+ nice -20 /usr/bin/aide --check >/var/lib/aide/$$
+ LIN=`grep -c . /var/lib/aide/$DATA2`
+ if [ "$LIN" -gt "1" ]; then
+     mail -s "!!! $SYSTEM $DATA AIDE !!!" $SYSADMIN </var/lib/aide/$$
+ fi
+ rm -f /var/lib/aide/$$
+else
+ mail -s "AIDE" $SYSADMIN "You don't have got /var/lib/aide/aide.db, do 'aide --init'"
 fi
-rm -f /var/lib/aide/$DATA2
