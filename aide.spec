@@ -76,7 +76,7 @@ install -d $RPM_BUILD_ROOT{%{_sysconfdir},%{_pkglibdir},/etc/cron.daily,/etc/sys
 
 install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
-install %{SOURCE3} $RPM_BUILD_ROOT/etc/sysconfig/aide
+install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/aide
 
 gzip -9nf AUTHORS ChangeLog NEWS README doc/aide.conf
 
