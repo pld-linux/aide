@@ -20,7 +20,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glibc-static
 BuildRequires:	libgcrypt-static
 BuildRequires:	zlib-static
-Requires:	crond
+Requires:	crondaemon
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir     /etc/%{name}
