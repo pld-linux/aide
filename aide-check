@@ -17,9 +17,10 @@ if [ -f /var/lib/aide/aide.db ]; then
  fi
  rm -f "$TMPFILE"
  trap - 0
+ if [ $AIDE_WORK_MODE = "update" ] && [ $AIDE_MOVEDB = "yes" ]; then
+     mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+ fi
 else
  nice -20 /usr/bin/aide --init
-fi
-if [ $AIDE_WORK_MODE = "update" ] && [ $AIDE_MOVEDB = "yes" ]; then
-     mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
+ mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
 fi
