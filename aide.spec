@@ -2,21 +2,24 @@ Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Name:		aide
 Version:	0.7
-Release:	4
+Release:	5
 License:	GPL
 Group:		Applications/System
 Group(de):	Applikationen/System
 Group(pl):	Aplikacje/System
-Source0:	ftp://ftp.linux.hr/pub/aide/%{name}-%{version}.tar.gz
+Source0:	ftp://ftp.cs.tut.fi/pub/src/gnu/%{name}-%{version}.tar.gz
 Source1:	%{name}.conf
 Source2:	%{name}-%{version}-doc.tar.bz2
 Source3:	%{name}-check
 Patch0:		%{name}-cvs20010627.patch.gz
 Patch1:		%{name}-NLS.patch
+Patch2:		%{name}-autoconf.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	flex
+BuildRequires:	bison
+BuildRequires:	perl-modules
 BuildRequires:	gettext-devel
 BuildRequires:	glibc-static
 BuildRequires:	libgcrypt-static
@@ -32,6 +35,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %setup -q -b 0 -b 2
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %description
 AIDE creates a database from the regular expression rules that it
