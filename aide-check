@@ -14,9 +14,9 @@ if [ -f /var/lib/aide/aide.db ]; then
  fi
  rm -f /var/lib/aide/$$
  if [ $AIDE_WORK_MODE = "update" ] && [ $AIDE_MOVEDB = "yes" ]; then
-     mv -f /var/lib/aide.db.new /var/lib/aide.db
+     mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
  fi
 else
  nice -20 /usr/bin/aide --init
- mv -f /var/lib/aide.db.new /var/lib/aide.db
+ mv -f /var/lib/aide/aide.db.new /var/lib/aide/aide.db
 fi
