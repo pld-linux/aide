@@ -26,6 +26,7 @@ BuildRequires:	libgcrypt-static
 BuildRequires:	zlib-static
 Requires:	crondaemon
 Requires:	mailx
+Requires:	grep
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir     /etc/%{name}
