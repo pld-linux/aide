@@ -1,5 +1,11 @@
-# Customized setings for postfix
+# Customized setings for aide
 
 # Define what aide should do `check` or `update`. 
 AIDE_WORK_MODE="check"
 
+# Define who should get mail with aide raport
+AIDE_MAILTO="root"
+
+# If you want to move new db created with `update`
+# to your old db then type `yes` here
+AIDE_MOVEDB="no"
