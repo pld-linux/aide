@@ -1,5 +1,6 @@
---- ./configure.in.org	Mon Jul 22 10:46:22 2002
-+++ ./configure.in	Mon Jul 22 12:35:12 2002
+diff -urN aide-0.9.org/configure.in aide-0.9/configure.in
+--- aide-0.9.org/configure.in	2003-11-02 23:01:14.000000000 +0100
++++ aide-0.9/configure.in	2003-11-02 23:01:50.000000000 +0100
 @@ -193,9 +193,7 @@
  	,
  	AC_CHECK_FUNCS(mmap)
@@ -132,7 +133,7 @@
    PSQLLIB="-lpq"
    compoptionstring="${compoptionstring}WITH_PSQL\\n"
    AC_MSG_RESULT(yes)
-@@ -505,6 +488,12 @@
+@@ -505,6 +488,11 @@
  
  AC_DEFINE_UNQUOTED(AIDECOMPILEOPTIONS, "${compoptionstring}")
  
@@ -141,9 +142,7 @@
 +AC_OUTPUT([
 +	   Makefile
 +	   src/Makefile
-+	   intl/Makefile
-+	   po/Makefile.in
 +	   doc/Makefile
 +	   doc/aide.conf
 +	   aide.spec])
- 
++ 
