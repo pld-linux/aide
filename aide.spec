@@ -1,4 +1,5 @@
 Summary:	Advanced Intrusion Detection Environment
+Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Name:		aide
 Version:	0.7
 Release:	2
@@ -39,6 +40,13 @@ digest algorithms (md5,sha1,rmd160,tiger,haval,etc.) that are used to
 check the integrity of the file. More algorithms can be added with
 relative ease. All of the usual file attributes can also be checked
 for inconsistencies.
+
+%description -l pl
+AIDE tworzy bazê danych z wyra¿eñ regularnych, które znajduj± siê w
+pliku konfiguracyjnym. Gdy baza zostanie zainicjowana mo¿na sprawdzaæ
+integralno¶æ plików. U¿ywanych jest kilka algorytmów sprawdzania
+spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane 
+stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 
 %build
 rm -f missing
