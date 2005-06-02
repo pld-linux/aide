@@ -1,0 +1,5 @@
+- spec adaptrerized,
+- Group changed to Applications/System,
+- added using %find_lang macro,
+- more %doc,
+- come cleanups.
