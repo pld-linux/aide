@@ -1,0 +1,1 @@
+- change %ghost to %dir for %{_pkglibdir}.
