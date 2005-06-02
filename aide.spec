@@ -22,7 +22,6 @@ URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
-BuildRequires:	findutils
 BuildRequires:	flex
 BuildRequires:	gettext-devel
 BuildRequires:	glibc-static
