@@ -3,7 +3,7 @@ Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Summary(pt_BR):	AIDE - ferramenta de verificação de integridade do sistema
 Name:		aide
 Version:	0.10
-Release:	2
+Release:	3
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
@@ -30,7 +30,6 @@ BuildRequires:	perl-modules
 BuildRequires:	zlib-static >= 1.1.4
 Requires:	crondaemon
 Requires:	grep
-Requires:	mailx
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_sysconfdir	/etc/%{name}
