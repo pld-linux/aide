@@ -6,7 +6,7 @@ Version:	0.10
 Release:	3
 License:	GPL
 Group:		Applications/System
-Source0:	http://dl.sourceforge.net/%{name}/%{name}-%{version}.tar.gz
+Source0:	http://dl.sourceforge.net/aide/%{name}-%{version}.tar.gz
 # Source0-md5:	39eb7d21064cac7b409c45d038b86cd8
 Source1:	%{name}.conf
 Source2:	%{name}-0.7-doc.tar.bz2
@@ -52,8 +52,8 @@ spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane
 stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
 
 %description -l pt_BR
-O AIDE tem por objetivo ser a versão gratuita do Tripwire, e ajuda
-a detectar violações de integridade pelo uso de hashes como MD5.
+O AIDE tem por objetivo ser a versão gratuita do Tripwire, e ajuda a
+detectar violações de integridade pelo uso de hashes como MD5.
 
 %prep
 %setup -q -b 0 -a 2
@@ -74,7 +74,7 @@ find . -name "*.c" -type f > po/POTFILES.in
 %configure \
 	--with-config-file=%{_sysconfdir}/aide.conf
 #	--with-extra-includes=/usr/include/
-make
+%{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -96,8 +96,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README doc/aide.conf doc/manual.html aide-*/doc/aide.html
 %attr(750,root,root) %dir %{_sysconfdir}
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) %{_sysconfdir}/aide.conf
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/aide
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/aide.conf
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/aide
 %attr(750,root,root) %dir %{_pkglibdir}
 %attr(755,root,root) %{_bindir}/aide
 %attr(700,root,root) %config(noreplace) /etc/cron.daily/aide-check
