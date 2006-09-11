@@ -2,12 +2,12 @@ Summary:	Advanced Intrusion Detection Environment
 Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
 Summary(pt_BR):	AIDE - ferramenta de verificação de integridade do sistema
 Name:		aide
-Version:	0.10
-Release:	3
+Version:	0.11
+Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/aide/%{name}-%{version}.tar.gz
-# Source0-md5:	39eb7d21064cac7b409c45d038b86cd8
+# Source0-md5:	9a44e5386b0355ef57c60f627ff4d085
 Source1:	%{name}.conf
 Source2:	%{name}-0.7-doc.tar.bz2
 # Source2-md5:	f8d01112f839957b3061bb6b5f262174
@@ -15,9 +15,7 @@ Source3:	%{name}-check
 Source4:	%{name}.sysconfig
 Patch0:		%{name}-autoconf.patch
 Patch1:		%{name}-NLS.patch
-Patch2:		%{name}-ac_fix.patch
-Patch3:		%{name}-no_md.patch
-Patch4:		%{name}-language-ru.patch
+Patch2:		%{name}-no_md.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -60,13 +58,8 @@ detectar violações de integridade pelo uso de hashes como MD5.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
 
 %build
-rm -f missing po/Makefile*
-find . -name "*.c" -type f > po/POTFILES.in
-
 %{__gettextize}
 %{__aclocal}
 %{__autoconf}
@@ -87,12 +80,12 @@ install %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}
 install %{SOURCE3} $RPM_BUILD_ROOT/etc/cron.daily
 install %{SOURCE4} $RPM_BUILD_ROOT/etc/sysconfig/aide
 
-%find_lang %{name}
+# %find_lang %{name}
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%files -f %{name}.lang
+%files
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README doc/aide.conf doc/manual.html aide-*/doc/aide.html
 %attr(750,root,root) %dir %{_sysconfdir}
