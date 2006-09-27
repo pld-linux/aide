@@ -1,0 +1,22 @@
+--- aide-0.11/configure.in.old	2006-09-27 13:59:33.000000000 +0200
++++ aide-0.11/configure.in	2006-09-27 14:00:16.000000000 +0200
+@@ -270,17 +270,8 @@
+ 
+ AC_CHECK_HEADERS(syslog.h ustat.h inttypes.h)
+ 
+-AC_ARG_WITH(locale,
+-	AC_HELP_STRING([--with-locale],
+-		[use locale stuff]),
+-	[AC_CHECK_HEADERS(libintl.h,
+-		[AC_DEFINE(USE_LOCALE,1,[Define if LOCALE support should be used])
+-		AIDE_USE_LOCALE=""
+-dnl        	AC_DEFINE_UNQUOTED(LOCALEDIR,"$prefix/lib/locale",[Localedir to use])],
+-	)]
+-)
+-
+-AC_SUBST(AIDE_USE_LOCALE)
++ALL_LINGUAS=""
++AM_GNU_GETTEXT
+ 
+ AC_ARG_WITH([syslog_ident],
+ 	AC_HELP_STRING([--with-syslog_ident],
