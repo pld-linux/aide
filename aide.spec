@@ -1,6 +1,6 @@
 Summary:	Advanced Intrusion Detection Environment
-Summary(pl.UTF-8):   Zaawansowany System Wykrywania Włamań (AIDE)
-Summary(pt_BR.UTF-8):   AIDE - ferramenta de verificação de integridade do sistema
+Summary(pl.UTF-8):	Zaawansowany System Wykrywania Włamań (AIDE)
+Summary(pt_BR.UTF-8):	AIDE - ferramenta de verificação de integridade do sistema
 Name:		aide
 Version:	0.11
 Release:	1
