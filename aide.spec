@@ -1,6 +1,6 @@
 Summary:	Advanced Intrusion Detection Environment
-Summary(pl):	Zaawansowany System Wykrywania W³amañ (AIDE)
-Summary(pt_BR):	AIDE - ferramenta de verificação de integridade do sistema
+Summary(pl.UTF-8):   Zaawansowany System Wykrywania WÅ‚amaÅ„ (AIDE)
+Summary(pt_BR.UTF-8):   AIDE - ferramenta de verificaÃ§Ã£o de integridade do sistema
 Name:		aide
 Version:	0.11
 Release:	1
@@ -42,16 +42,16 @@ check the integrity of the file. More algorithms can be added with
 relative ease. All of the usual file attributes can also be checked
 for inconsistencies.
 
-%description -l pl
-AIDE tworzy bazê danych z wyra¿eñ regularnych, które znajduj± siê w
-pliku konfiguracyjnym. Gdy baza zostanie zainicjowana mo¿na sprawdzaæ
-integralno¶æ plików. U¿ywanych jest kilka algorytmów sprawdzania
-spójno¶ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mog± byæ dodane
-stosunkowo ³atwo. Zwyk³e atrybuty plików tak¿e mog± byæ sprawdzane.
+%description -l pl.UTF-8
+AIDE tworzy bazÄ™ danych z wyraÅ¼eÅ„ regularnych, ktÃ³re znajdujÄ… siÄ™ w
+pliku konfiguracyjnym. Gdy baza zostanie zainicjowana moÅ¼na sprawdzaÄ‡
+integralnoÅ›Ä‡ plikÃ³w. UÅ¼ywanych jest kilka algorytmÃ³w sprawdzania
+spÃ³jnoÅ›ci (md5,sha1,rmd160,tiger,haval,itp.). Inne mogÄ… byÄ‡ dodane
+stosunkowo Å‚atwo. ZwykÅ‚e atrybuty plikÃ³w takÅ¼e mogÄ… byÄ‡ sprawdzane.
 
-%description -l pt_BR
-O AIDE tem por objetivo ser a versão gratuita do Tripwire, e ajuda a
-detectar violações de integridade pelo uso de hashes como MD5.
+%description -l pt_BR.UTF-8
+O AIDE tem por objetivo ser a versÃ£o gratuita do Tripwire, e ajuda a
+detectar violaÃ§Ãµes de integridade pelo uso de hashes como MD5.
 
 %prep
 %setup -q -b 0 -a 2
