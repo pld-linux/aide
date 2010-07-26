@@ -5,20 +5,8 @@ diff -urN aide-0.11.orig/Makefile.am aide-0.11/Makefile.am
  # Boston, MA 02111-1307, USA.
  #
  
--SUBDIRS = src doc
-+SUBDIRS = src doc intl
+-SUBDIRS = include src doc
++SUBDIRS = include src doc intl
  
  datadir = @datadir@
  localedir = $(datadir)/locale
-diff -urN aide-0.11.orig/src/Makefile.am aide-0.11/src/Makefile.am
---- aide-0.11.orig/src/Makefile.am	2006-09-11 16:08:49.000000000 +0200
-+++ aide-0.11/src/Makefile.am	2006-09-11 16:09:49.000000000 +0200
-@@ -47,7 +47,7 @@
- 		snprintf.c	\
- 		aide.c
- 
--INCLUDES = -I$(top_srcdir)/include
-+INCLUDES = -I$(top_srcdir)/include -I$(includedir)
- 
- LDADD = @CRYPTLIB@ @ACLLIB@
- 
