@@ -25,6 +25,7 @@ BuildRequires:	gettext-devel
 BuildRequires:	glibc-static
 BuildRequires:	mhash-static
 BuildRequires:	perl-modules
+BuildRequires:	pkgconfig
 BuildRequires:	zlib-static >= 1.1.4
 Requires:	crondaemon
 Requires:	grep
