@@ -2,12 +2,12 @@ Summary:	Advanced Intrusion Detection Environment
 Summary(pl.UTF-8):	Zaawansowany System Wykrywania Włamań (AIDE)
 Summary(pt_BR.UTF-8):	AIDE - ferramenta de verificação de integridade do sistema
 Name:		aide
-Version:	0.14.2
+Version:	0.15.1
 Release:	1
 License:	GPL
 Group:		Applications/System
 Source0:	http://dl.sourceforge.net/aide/%{name}-%{version}.tar.gz
-# Source0-md5:	c3b9d8bf29efc065e7cb86174370af11
+# Source0-md5:	d0b72535ff68b93a648e4d08b0ed7f07
 Source1:	%{name}.conf
 Source2:	%{name}-0.7-doc.tar.bz2
 # Source2-md5:	f8d01112f839957b3061bb6b5f262174
