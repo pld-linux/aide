@@ -1,0 +1,20 @@
+--- aide-0.15.1/src/db_file.c~	2010-08-08 19:39:31.000000000 +0200
++++ aide-0.15.1/src/db_file.c	2013-02-17 00:30:25.921433489 +0100
+@@ -702,7 +702,7 @@
+   }
+ 
+   if(tmpstr){
+-    retval=dofprintf(tmpstr);
++    retval=dofprintf("%s", tmpstr);
+     free(tmpstr);
+     return retval;
+   }else {
+@@ -741,7 +741,7 @@
+ 
+ 
+   tmpstr=encode_base64((byte *)ptr,strlen(ptr));
+-  retval=dofprintf(tmpstr);
++  retval=dofprintf("%s", tmpstr);
+   free(tmpstr);
+   free(ptr);
+ 

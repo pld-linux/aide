@@ -16,6 +16,8 @@ Source4:	%{name}.sysconfig
 Patch0:		%{name}-autoconf.patch
 Patch1:		%{name}-NLS.patch
 Patch2:		%{name}-no_md.patch
+Patch3:		%{name}-lex.patch
+Patch4:		%{name}-Werror.patch
 URL:		http://www.cs.tut.fi/~rammer/aide.html
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -59,6 +61,10 @@ detectar violações de integridade pelo uso de hashes como MD5.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
+%patch4 -p1
+
+rm src/conf_lex.c src/db_lex.c
 
 %build
 %{__gettextize}
