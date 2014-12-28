@@ -23,7 +23,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bison
 BuildRequires:	flex
-BuildRequires:	gettext-devel
+BuildRequires:	gettext-tools
 BuildRequires:	glibc-static
 BuildRequires:	mhash-static
 BuildRequires:	perl-modules
