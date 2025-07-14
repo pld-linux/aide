@@ -58,11 +58,11 @@ detectar violações de integridade pelo uso de hashes como MD5.
 
 %prep
 %setup -q -b 0 -a 2
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
+%patch -P0 -p1
+%patch -P1 -p1
+%patch -P2 -p1
+%patch -P3 -p1
+%patch -P4 -p1
 
 rm src/conf_lex.c src/db_lex.c
 
